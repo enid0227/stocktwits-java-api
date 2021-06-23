@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="AppEngineStandardGradleModuleComponent">
+    <option name="gradleBuildDir" value="$MODULE_DIR$/../../build" />
+    <option name="gradleModuleDir" value="$MODULE_DIR$/../.." />
+  </component>
+  <component name="CheckStyle-IDEA-Module">
+    <option name="configuration">
+      <map />
+    </option>
+  </component>
+</module>
