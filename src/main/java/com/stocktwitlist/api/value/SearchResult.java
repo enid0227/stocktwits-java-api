@@ -13,8 +13,8 @@ import javax.annotation.Nullable;
  *
  * <p>While in theory, this can be done with jackson inheritance, a dedicate value class seems to be
  * a simpler solution to this problem. See {@link com.fasterxml.jackson.annotation.JsonTypeInfo}.
- * Jackson inheritance may introduce potential unwanted interdependency introduced between regular
- * User and regular Symbol value classes.
+ * Jackson inheritance may introduce potential unwanted interdependency between regular User and
+ * regular Symbol value classes.
  */
 @AutoValue
 @JsonDeserialize(builder = AutoValue_SearchResult.Builder.class)

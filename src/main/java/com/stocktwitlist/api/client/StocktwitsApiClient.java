@@ -1,6 +1,7 @@
 package com.stocktwitlist.api.client;
 
 import com.stocktwitlist.api.contract.ApiClient;
+import com.stocktwitlist.api.contract.SearchRequest;
 import com.stocktwitlist.api.contract.StreamRequest;
 
 /** Basic implementation for stocktwits.com API */
@@ -24,5 +25,10 @@ public final class StocktwitsApiClient implements ApiClient {
   @Override
   public StreamRequest streams() {
     return new StreamRequestContext(context);
+  }
+
+  @Override
+  public SearchRequest search() {
+    return new SearchRequestContext(context);
   }
 }
