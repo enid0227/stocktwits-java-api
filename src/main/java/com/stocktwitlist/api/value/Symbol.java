@@ -1,5 +1,6 @@
 package com.stocktwitlist.api.value;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -10,6 +11,7 @@ import javax.annotation.Nullable;
 @AutoValue
 @JsonDeserialize(builder = AutoValue_Symbol.Builder.class)
 @JsonSerialize(as = Symbol.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public abstract class Symbol {
 
   public static Builder builder() {

@@ -1,5 +1,6 @@
 package com.stocktwitlist.api.value;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -10,6 +11,7 @@ import com.google.common.collect.ImmutableList;
 @AutoValue
 @JsonDeserialize(builder = AutoValue_Likes.Builder.class)
 @JsonSerialize(as = Likes.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public abstract class Likes {
   public static Builder builder() {
     return new AutoValue_Likes.Builder();

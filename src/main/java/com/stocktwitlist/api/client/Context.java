@@ -2,6 +2,7 @@ package com.stocktwitlist.api.client;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -45,6 +46,7 @@ final class Context {
             .addModule(new GuavaModule())
             .serializationInclusion(Include.NON_NULL)
             .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
             .build();
   }
 
@@ -109,6 +111,7 @@ final class Context {
       return objectMapper.readValue(json, responseClass);
     } catch (JsonProcessingException e) {
       logger.atSevere().withCause(e).log("error parsing stock JSON response");
+      logger.atSevere().log("raw JSON response:\n%s", json);
       return null;
     }
   }

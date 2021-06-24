@@ -3,6 +3,7 @@ package com.stocktwitlist.api.value;
 import static com.google.common.truth.Truth.assertThat;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -114,6 +115,7 @@ public class StreamResponseTest {
             .addModule(new GuavaModule())
             .serializationInclusion(Include.NON_NULL)
             .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
             .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
             .build();
   }

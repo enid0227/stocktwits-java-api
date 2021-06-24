@@ -1,5 +1,6 @@
 package com.stocktwitlist.api.value;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -9,6 +10,7 @@ import com.google.auto.value.AutoValue;
 @AutoValue
 @JsonDeserialize(builder = AutoValue_Conversation.Builder.class)
 @JsonSerialize(as = Conversation.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public abstract class Conversation {
 
   public static Builder builder() {
