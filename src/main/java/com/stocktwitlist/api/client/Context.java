@@ -78,6 +78,11 @@ final class Context {
     return this;
   }
 
+  Context addQueryParam(String key, String value) {
+    queryParams.put(key, value);
+    return this;
+  }
+
   String getUrl() {
     return String.format("%s.json?accessToken=%s", String.join("/", endpointPath), accessToken);
   }

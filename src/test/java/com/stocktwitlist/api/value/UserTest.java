@@ -5,14 +5,16 @@ import static com.google.common.truth.Truth.assertThat;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.guava.GuavaModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.google.common.collect.ImmutableList;
 import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class UserTest {
   private static final String SAMPLE_JSON =
-      "{\"avatar_url\":\"https://avatars.png\",\"avatar_url_ssl\":\"https://avatars.png\",\"followers\":3,\"following\":49,\"id\":123456,\"ideas\":15,\"identity\":\"User\",\"join_date\":\"2020-07-13\",\"like_count\":180,\"name\":\"someuser\",\"official\":false,\"plus_tier\":\"\",\"premium_room\":\"\",\"trade_app\":false,\"username\":\"someuser\",\"watchlist_stocks_count\":138}";
+      "{\"avatar_url\":\"https://avatars.png\",\"avatar_url_ssl\":\"https://avatars.png\",\"classification\":[],\"followers\":3,\"following\":49,\"id\":123456,\"ideas\":15,\"identity\":\"User\",\"join_date\":\"2020-07-13\",\"like_count\":180,\"name\":\"someuser\",\"official\":false,\"plus_tier\":\"\",\"premium_room\":\"\",\"trade_app\":false,\"username\":\"someuser\",\"watchlist_stocks_count\":138}";
 
   private static final User SAMPLE_USER =
       User.builder()
@@ -31,6 +33,7 @@ public class UserTest {
           .setPremiumRoom("")
           .setTradeApp(false)
           .setUsername("someuser")
+          .setClassification(ImmutableList.of())
           .setWatchListStocksCount(138)
           .build();
 
@@ -38,9 +41,11 @@ public class UserTest {
 
   @BeforeEach
   public void setup() {
+    // TODO: migrate objectMapper to abstract class or junit extension
     objectMapper =
         JsonMapper.builder()
             .addModule(new JavaTimeModule())
+            .addModule(new GuavaModule())
             .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)
             .build();
   }

@@ -6,7 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.google.auto.value.AutoValue;
+import com.google.common.collect.ImmutableList;
 import java.time.LocalDate;
+import javax.annotation.Nullable;
 
 /** AutoValue of User JSON response. */
 @AutoValue
@@ -67,9 +69,9 @@ public abstract class User {
   @JsonProperty("watchlist_stocks_count")
   public abstract int watchListStocksCount();
 
-  // Cannot find any document or available data yet.
-  // Not sure about the type of the list. Ignore for now
-  // public abstract ImmutableList<String> classification();
+  @JsonProperty("classification")
+  @Nullable
+  public abstract ImmutableList<String> classification();
 
   /** Builder for User AutoValue. */
   @AutoValue.Builder
@@ -122,6 +124,9 @@ public abstract class User {
 
     @JsonProperty("watchlist_stocks_count")
     public abstract Builder setWatchListStocksCount(int watchListStocksCount);
+
+    @JsonProperty("classification")
+    public abstract Builder setClassification(ImmutableList<String> classification);
 
     public abstract User build();
   }
