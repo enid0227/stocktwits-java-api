@@ -42,16 +42,19 @@ public abstract class Message {
   public abstract ImmutableList<String> mentionedUsers();
 
   @JsonProperty("liked_by_self")
-  public abstract boolean likedBySelf();
+  @Nullable
+  public abstract Boolean likedBySelf();
 
   @JsonProperty("reshared_by_self")
-  public abstract boolean resharedBySelf();
+  @Nullable
+  public abstract Boolean resharedBySelf();
 
   @JsonProperty("conversation")
   @Nullable
   public abstract Conversation conversation();
 
   @JsonProperty("likes")
+  @Nullable
   public abstract Likes likes();
 
   // TODO: entities
@@ -75,25 +78,19 @@ public abstract class Message {
     public abstract Builder setSource(Source source);
 
     @JsonProperty("symbols")
-    public abstract ImmutableList.Builder<Symbol> symbolsBuilder();
-
-    @JsonProperty("symbols")
     public abstract Builder setSymbols(ImmutableList<Symbol> symbols);
 
     @JsonProperty("user")
     public abstract Builder setUser(User user);
 
     @JsonProperty("mentioned_users")
-    public abstract ImmutableList.Builder<String> mentionedUsersBuilder();
-
-    @JsonProperty("mentioned_users")
     public abstract Builder setMentionedUsers(ImmutableList<String> mentionedUsers);
 
     @JsonProperty("liked_by_self")
-    public abstract Builder setLikedBySelf(boolean likedBySelf);
+    public abstract Builder setLikedBySelf(Boolean likedBySelf);
 
     @JsonProperty("reshared_by_self")
-    public abstract Builder setResharedBySelf(boolean resharedBySelf);
+    public abstract Builder setResharedBySelf(Boolean resharedBySelf);
 
     @JsonProperty("conversation")
     public abstract Builder setConversation(Conversation conversation);

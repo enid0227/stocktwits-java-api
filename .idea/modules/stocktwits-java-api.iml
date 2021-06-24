@@ -4,4 +4,9 @@
     <option name="gradleBuildDir" value="$MODULE_DIR$/../../build" />
     <option name="gradleModuleDir" value="$MODULE_DIR$/../.." />
   </component>
+  <component name="CheckStyle-IDEA-Module">
+    <option name="configuration">
+      <map />
+    </option>
+  </component>
 </module>

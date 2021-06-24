@@ -25,6 +25,7 @@ public abstract class StreamResponse implements Response {
   }
 
   @JsonProperty("cursor")
+  @Nullable
   public abstract Cursor cursor();
 
   @JsonProperty("user")
