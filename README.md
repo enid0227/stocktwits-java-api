@@ -9,13 +9,20 @@ inspired by [fluent interface](https://en.wikipedia.org/wiki/Fluent_interface).
 
 ```java
 // Example Call https://api.stocktwits.com/api/2/streams/user/:id.json
-StreamResponse resp=
+StreamResponse resp =
     StocktwitsApiClient.newRequest("testToken")
     .streams()
     .setSince(1L)
     .setMax(1000000L)
     .setLimit(25)
     .user("testusername")
+    .send();
+
+// Example Call
+SearchResponse resp =
+    StocktwitsApiClient.newRequest("testToken")
+    .search()
+    .users("findingnemo")
     .send();
 ```
 

@@ -29,7 +29,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.3'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr353:2.12.3'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.12.3'
-    compileOnlyApi      "com.google.auto.value:auto-value-annotations:${autoValueVersion}"
+    compileOnlyApi "com.google.auto.value:auto-value-annotations:${autoValueVersion}"
     annotationProcessor "com.google.auto.value:auto-value:${autoValueVersion}"
     implementation 'com.google.flogger:flogger-system-backend:0.6'
     implementation 'com.google.flogger:flogger:0.6'
