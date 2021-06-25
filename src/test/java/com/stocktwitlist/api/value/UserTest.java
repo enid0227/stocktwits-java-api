@@ -1,12 +1,9 @@
 package com.stocktwitlist.api.value;
 
 import static com.google.common.truth.Truth.assertThat;
+import static com.stocktwitlist.api.helper.ObjectMappers.getDefaultTestObjectMapper;
 
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.datatype.guava.GuavaModule;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.common.collect.ImmutableList;
 import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,12 +39,7 @@ public class UserTest {
   @BeforeEach
   public void setup() {
     // TODO: migrate objectMapper to abstract class or junit extension
-    objectMapper =
-        JsonMapper.builder()
-            .addModule(new JavaTimeModule())
-            .addModule(new GuavaModule())
-            .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)
-            .build();
+    objectMapper = getDefaultTestObjectMapper();
   }
 
   @Test

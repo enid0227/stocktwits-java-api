@@ -1,6 +1,7 @@
 package com.stocktwitlist.api.client;
 
 import static com.google.common.truth.Truth.assertThat;
+import static com.stocktwitlist.api.helper.ObjectMappers.getDefaultTestObjectMapper;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.mock;
@@ -8,12 +9,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.datatype.guava.GuavaModule;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.common.collect.ImmutableList;
 import com.stocktwitlist.api.value.SearchResponse;
 import com.stocktwitlist.api.value.SearchResult;
@@ -35,13 +31,7 @@ public class StreamRequestTest {
   void setup() {
     mockHttpClient = mock(HttpClient.class);
     stubHttpResponse = mock(HttpResponse.class);
-    objectMapper =
-        JsonMapper.builder()
-            .addModule(new JavaTimeModule())
-            .addModule(new GuavaModule())
-            .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-            .build();
+    objectMapper = getDefaultTestObjectMapper();
   }
 
   @Test

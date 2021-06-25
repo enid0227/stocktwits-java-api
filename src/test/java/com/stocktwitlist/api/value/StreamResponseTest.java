@@ -1,15 +1,9 @@
 package com.stocktwitlist.api.value;
 
 import static com.google.common.truth.Truth.assertThat;
+import static com.stocktwitlist.api.helper.ObjectMappers.getDefaultTestObjectMapper;
 
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.datatype.guava.GuavaModule;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.common.collect.ImmutableList;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -109,15 +103,7 @@ public class StreamResponseTest {
 
   @BeforeEach
   public void setupObjectMapper() {
-    objectMapper =
-        JsonMapper.builder()
-            .addModule(new JavaTimeModule())
-            .addModule(new GuavaModule())
-            .serializationInclusion(Include.NON_NULL)
-            .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
-            .build();
+    objectMapper = getDefaultTestObjectMapper();
   }
 
   @Test

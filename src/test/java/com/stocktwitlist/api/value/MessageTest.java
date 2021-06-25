@@ -1,13 +1,9 @@
 package com.stocktwitlist.api.value;
 
 import static com.google.common.truth.Truth.assertThat;
+import static com.stocktwitlist.api.helper.ObjectMappers.getDefaultTestObjectMapper;
 
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.datatype.guava.GuavaModule;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.common.collect.ImmutableList;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -19,7 +15,7 @@ public class MessageTest {
       "{\"body\":\"message body"
           + " here\",\"conversation\":{\"in_reply_to_message_id\":987654320,\"parent\":false,\"parent_message_id\":987654320,\"replies\":3},\"created_at\":\"2021-03-31T20:52:48Z\",\"id\":987654321,\"liked_by_self\":false,\"likes\":{\"total\":3,\"user_ids\":[7654321,66554321,19198181]},\"mentioned_users\":[\"@someuser2\"],\"reshared_by_self\":false,\"source\":{\"id\":1234,\"title\":\"StockTwits"
           + " for iOS\",\"url\":\"http://www.stocktwits.com/mobile\"},\"symbols\":[{\"has_pricing\":true,\"id\":1634,\"is_following\":false,\"symbol\":\"DRRX\",\"title\":\"Durect"
-          + " Corp.\",\"watchlist_count\":8673}],\"user\":{\"avatar_url\":\"https://avatars.png\",\"avatar_url_ssl\":\"https://avatars.png\",\"classification\":null,\"followers\":3,\"following\":49,\"id\":123456,\"ideas\":15,\"identity\":\"User\",\"join_date\":\"2020-07-13\",\"like_count\":180,\"name\":\"someuser\",\"official\":false,\"plus_tier\":\"\",\"premium_room\":\"\",\"trade_app\":false,\"username\":\"someuser\",\"watchlist_stocks_count\":138}}";
+          + " Corp.\",\"watchlist_count\":8673}],\"user\":{\"avatar_url\":\"https://avatars.png\",\"avatar_url_ssl\":\"https://avatars.png\",\"followers\":3,\"following\":49,\"id\":123456,\"ideas\":15,\"identity\":\"User\",\"join_date\":\"2020-07-13\",\"like_count\":180,\"name\":\"someuser\",\"official\":false,\"plus_tier\":\"\",\"premium_room\":\"\",\"trade_app\":false,\"username\":\"someuser\",\"watchlist_stocks_count\":138}}";
 
   private static final User SAMPLE_USER =
       User.builder()
@@ -85,13 +81,7 @@ public class MessageTest {
 
   @BeforeEach
   public void setupObjectMapper() {
-    objectMapper =
-        JsonMapper.builder()
-            .addModule(new JavaTimeModule())
-            .addModule(new GuavaModule())
-            .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)
-            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
-            .build();
+    objectMapper = getDefaultTestObjectMapper();
   }
 
   @Test
