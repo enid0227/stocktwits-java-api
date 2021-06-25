@@ -3,6 +3,7 @@ package com.stocktwitlist.api.client;
 import com.stocktwitlist.api.contract.ApiClient;
 import com.stocktwitlist.api.contract.SearchRequest;
 import com.stocktwitlist.api.contract.StreamRequest;
+import java.net.http.HttpClient;
 
 /** Basic implementation for stocktwits.com API */
 public final class StocktwitsApiClient implements ApiClient {
@@ -20,6 +21,12 @@ public final class StocktwitsApiClient implements ApiClient {
    */
   public static ApiClient newRequest(String accessToken) {
     return new StocktwitsApiClient(accessToken);
+  }
+
+  @Override
+  public ApiClient setHttpClient(HttpClient httpClient) {
+    context.setHttpClient(httpClient);
+    return this;
   }
 
   @Override

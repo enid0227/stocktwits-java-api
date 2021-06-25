@@ -1,10 +1,9 @@
 package com.stocktwitlist.api.value;
 
 import static com.google.common.truth.Truth.assertThat;
+import static com.stocktwitlist.api.helper.ObjectMappers.getDefaultTestObjectMapper;
 
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,8 +12,7 @@ public class SymbolTest {
 
   @BeforeEach
   public void setupObjectMapper() {
-    objectMapper =
-        JsonMapper.builder().configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true).build();
+    objectMapper = getDefaultTestObjectMapper();
   }
 
   @Test
@@ -22,9 +20,7 @@ public class SymbolTest {
     assertThat(
             objectMapper.writeValueAsString(
                 Symbol.builder().setId(17L).setSymbol("JOY").setTitle("JOY Global, Inc.").build()))
-        .isEqualTo(
-            "{\"has_pricing\":null,\"id\":17,\"is_following\":null,\"symbol\":\"JOY\",\"title\":\"JOY"
-                + " Global, Inc.\",\"watchlist_count\":null}");
+        .isEqualTo("{\"id\":17,\"symbol\":\"JOY\",\"title\":\"JOY" + " Global, Inc.\"}");
   }
 
   @Test

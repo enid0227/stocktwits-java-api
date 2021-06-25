@@ -1,8 +1,8 @@
 package com.stocktwitlist.api.value;
 
 import static com.google.common.truth.Truth.assertThat;
+import static com.stocktwitlist.api.helper.ObjectMappers.getDefaultTestObjectMapper;
 
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,8 +13,7 @@ public class CursorTests {
 
   @BeforeEach
   public void setupObjectMapper() {
-    objectMapper = new ObjectMapper();
-    objectMapper.configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+    objectMapper = getDefaultTestObjectMapper();
   }
 
   @Test

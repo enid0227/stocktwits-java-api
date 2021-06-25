@@ -1,10 +1,9 @@
 package com.stocktwitlist.api.value;
 
 import static com.google.common.truth.Truth.assertThat;
+import static com.stocktwitlist.api.helper.ObjectMappers.getDefaultTestObjectMapper;
 
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +13,7 @@ public class SourceTest {
 
   @BeforeEach
   public void setup() {
-    objectMapper =
-        JsonMapper.builder().configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true).build();
+    objectMapper = getDefaultTestObjectMapper();
   }
 
   @Test
