@@ -1,5 +1,7 @@
 package com.stocktwitlist.api.client;
 
+import static java.util.stream.Collectors.joining;
+
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -12,10 +14,12 @@ import com.google.common.flogger.FluentLogger;
 import com.stocktwitlist.api.contract.Response;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,14 +34,13 @@ final class Context {
   // TODO: use data for POST API endpoints
   // private Map<String, String> data;
   private final Map<String, String> queryParams;
-  private final String accessToken;
   private final ObjectMapper objectMapper;
   private HttpClient httpClient;
   private Class<? extends Response> responseClass;
 
   Context(String accessToken) {
-    this.accessToken = accessToken;
     queryParams = new HashMap<>();
+    queryParams.put("access_token", accessToken);
     endpointPath = new ArrayList<>();
     endpointPath.add("https://api.stocktwits.com/api/2");
     objectMapper =
@@ -84,7 +87,18 @@ final class Context {
   }
 
   String getUrl() {
-    return String.format("%s.json?accessToken=%s", String.join("/", endpointPath), accessToken);
+    // queryParams;
+    StringBuilder urlBuilder = new StringBuilder();
+    urlBuilder.append(String.join("/", endpointPath) + ".json");
+    urlBuilder.append("?");
+    urlBuilder.append(
+        queryParams.keySet().stream()
+            // make sure param order is always the same for the same combination of params.
+            // this makes debug and test easier.
+            .sorted()
+            .map(key -> key + "=" + URLEncoder.encode(queryParams.get(key), StandardCharsets.UTF_8))
+            .collect(joining("&")));
+    return urlBuilder.toString();
   }
 
   @Nullable
@@ -92,13 +106,9 @@ final class Context {
     String url = getUrl();
     logger.atInfo().log(url);
 
-    HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url)).build();
     try {
-      HttpResponse<String> response =
-          HttpClient.newBuilder()
-              .connectTimeout(Duration.ofSeconds(10))
-              .build()
-              .send(request, BodyHandlers.ofString());
+      HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url)).build();
+      HttpResponse<String> response = getHttpClient().send(request, BodyHandlers.ofString());
       logger.atInfo().log("status_code: %s", response.statusCode());
       if (response.statusCode() != 200) {
         logger.atInfo().log("non 200 response. body: %s", response.body());
@@ -125,5 +135,10 @@ final class Context {
     return httpClient != null
         ? httpClient
         : HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
+  }
+
+  Context setHttpClient(HttpClient httpClient) {
+    this.httpClient = httpClient;
+    return this;
   }
 }
