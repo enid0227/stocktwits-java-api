@@ -17,6 +17,7 @@ import java.net.URI;
 import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.nio.charset.StandardCharsets;
@@ -31,18 +32,20 @@ final class Context {
   private static final FluentLogger logger = FluentLogger.forEnclosingClass();
 
   private final List<String> endpointPath;
-  // TODO: use data for POST API endpoints
-  // private Map<String, String> data;
   private final Map<String, String> queryParams;
   private final ObjectMapper objectMapper;
+  private Map<String, String> data;
   private HttpClient httpClient;
   private Class<? extends Response> responseClass;
+  private String httpMethod;
 
   Context(String accessToken) {
     queryParams = new HashMap<>();
     queryParams.put("access_token", accessToken);
+    data = new HashMap<>();
     endpointPath = new ArrayList<>();
     endpointPath.add("https://api.stocktwits.com/api/2");
+    httpMethod = "GET"; // default to GET method
     objectMapper =
         JsonMapper.builder()
             .addModule(new JavaTimeModule())
@@ -86,6 +89,11 @@ final class Context {
     return this;
   }
 
+  Context addData(String key, String value) {
+    data.put(key, value);
+    return this;
+  }
+
   String getUrl() {
     // queryParams;
     StringBuilder urlBuilder = new StringBuilder();
@@ -107,7 +115,11 @@ final class Context {
     logger.atInfo().log(url);
 
     try {
-      HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url)).build();
+      HttpRequest request =
+          HttpRequest.newBuilder()
+              .uri(URI.create(url))
+              .method(httpMethod, BodyPublishers.ofString(objectMapper.writeValueAsString(data)))
+              .build();
       HttpResponse<String> response = getHttpClient().send(request, BodyHandlers.ofString());
       logger.atInfo().log("status_code: %s", response.statusCode());
       if (response.statusCode() != 200) {

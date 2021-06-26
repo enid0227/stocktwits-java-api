@@ -3,6 +3,7 @@ package com.stocktwitlist.api.client;
 import com.stocktwitlist.api.contract.Sendable;
 import com.stocktwitlist.api.contract.StreamRequest;
 import com.stocktwitlist.api.value.StreamResponse;
+import java.util.List;
 import javax.annotation.Nullable;
 
 final class StreamRequestContext implements StreamRequest {
@@ -32,7 +33,7 @@ final class StreamRequestContext implements StreamRequest {
   }
 
   @Override
-  public Sendable<StreamResponse> user(int userId) {
+  public Sendable<StreamResponse> user(long userId) {
     return new StreamSendable(context.appendPath("user").appendPath("" + userId));
   }
 
@@ -42,7 +43,7 @@ final class StreamRequestContext implements StreamRequest {
   }
 
   @Override
-  public Sendable<StreamResponse> symbol(int symbolId) {
+  public Sendable<StreamResponse> symbol(long symbolId) {
     return new StreamSendable(context.appendPath("symbol").appendPath("" + symbolId));
   }
 
@@ -72,12 +73,12 @@ final class StreamRequestContext implements StreamRequest {
   }
 
   @Override
-  public Sendable<StreamResponse> direct_sent() {
+  public Sendable<StreamResponse> directSent() {
     return new StreamSendable(context.appendPath("direct_sent"));
   }
 
   @Override
-  public Sendable<StreamResponse> direct_received() {
+  public Sendable<StreamResponse> directReceived() {
     return new StreamSendable(context.appendPath("direct_received"));
   }
 
@@ -117,8 +118,12 @@ final class StreamRequestContext implements StreamRequest {
   }
 
   @Override
-  public Sendable<StreamResponse> symbols() {
-    return new StreamSendable(context.appendPath("symbols"));
+  public Sendable<StreamResponse> symbols(List<String> symbols) {
+    if (symbols.size() > 10) {
+      throw new IllegalArgumentException("exceeded max allowed 10 symbols.");
+    }
+    return new StreamSendable(
+        context.appendPath("symbols").addData("symbols", String.join(",", symbols)));
   }
 
   @Override
@@ -128,12 +133,12 @@ final class StreamRequestContext implements StreamRequest {
 
   @Override
   public Sendable<StreamResponse> sectors(String sector) {
-    return new StreamSendable(context.appendPath("sector").appendPath("sector"));
+    return new StreamSendable(context.appendPath("sectors").appendPath(sector));
   }
 
   @Override
   public Sendable<StreamResponse> conversation(long conversationId) {
-    return new StreamSendable(context.appendPath("conversation").appendPath("conversationId"));
+    return new StreamSendable(context.appendPath("conversation").appendPath("" + conversationId));
   }
 
   static final class StreamSendable implements Sendable<StreamResponse> {

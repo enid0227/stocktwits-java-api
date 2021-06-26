@@ -61,6 +61,8 @@ public abstract class Message {
   // - "sentiment": {"basic": "Bullish"}
   // - "giphy": {"id": "<giphy-id>", "ratio": 1.41421}
 
+  public abstract Builder toBuilder();
+
   /** Builder for Message AutoValue. */
   @AutoValue.Builder
   public abstract static class Builder {

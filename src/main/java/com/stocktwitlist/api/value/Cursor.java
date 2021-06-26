@@ -25,6 +25,8 @@ public abstract class Cursor {
   @JsonProperty("max")
   public abstract long max();
 
+  public abstract Builder toBuilder();
+
   /** Builder for Cursor AutoValue. */
   @AutoValue.Builder
   public abstract static class Builder {

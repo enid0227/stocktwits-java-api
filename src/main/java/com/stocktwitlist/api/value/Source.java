@@ -25,6 +25,8 @@ public abstract class Source {
   @JsonProperty("url")
   public abstract String url();
 
+  public abstract Builder toBuilder();
+
   /** Builder for Source AutoValue. */
   @AutoValue.Builder
   public abstract static class Builder {

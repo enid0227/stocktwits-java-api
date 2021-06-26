@@ -23,6 +23,8 @@ public abstract class Likes {
   @JsonProperty("user_ids")
   public abstract ImmutableList<Long> userIds();
 
+  public abstract Builder toBuilder();
+
   /** Builder for Likes AutoValue. */
   @AutoValue.Builder
   public abstract static class Builder {

@@ -39,6 +39,8 @@ public abstract class Symbol {
   @Nullable
   public abstract Boolean hasPricing();
 
+  public abstract Builder toBuilder();
+
   /** Builder for Symbol AutoValue. */
   @AutoValue.Builder
   public abstract static class Builder {

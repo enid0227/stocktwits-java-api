@@ -73,6 +73,8 @@ public abstract class User {
   @Nullable
   public abstract ImmutableList<String> classification();
 
+  public abstract Builder toBuilder();
+
   /** Builder for User AutoValue. */
   @AutoValue.Builder
   public abstract static class Builder {

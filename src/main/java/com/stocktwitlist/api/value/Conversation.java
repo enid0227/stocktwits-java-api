@@ -29,6 +29,8 @@ public abstract class Conversation {
   @JsonProperty("replies")
   public abstract int replies();
 
+  public abstract Builder toBuilder();
+
   /** Builder for Conversation AutoValue. */
   @AutoValue.Builder
   public abstract static class Builder {
