@@ -59,6 +59,8 @@ public abstract class SearchResult {
   @Nullable
   public abstract String identity();
 
+  public abstract Builder toBuilder();
+
   @JsonProperty("classification")
   @Nullable
   public abstract ImmutableList<String> classification();

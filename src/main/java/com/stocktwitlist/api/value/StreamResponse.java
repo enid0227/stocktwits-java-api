@@ -43,6 +43,8 @@ public abstract class StreamResponse implements Response {
   @JsonProperty("messages")
   public abstract ImmutableList<Message> messages();
 
+  public abstract Builder toBuilder();
+
   /** Builder for Cursor AutoValue. */
   @AutoValue.Builder
   public abstract static class Builder {

@@ -35,6 +35,8 @@ public abstract class Watchlist {
   @Nullable
   public abstract ImmutableList<Symbol> symbols();
 
+  public abstract Builder toBuilder();
+
   /** Builder for Watchlist AutoValue. */
   @AutoValue.Builder
   public abstract static class Builder {

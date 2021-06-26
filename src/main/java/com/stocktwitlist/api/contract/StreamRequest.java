@@ -1,17 +1,18 @@
 package com.stocktwitlist.api.contract;
 
 import com.stocktwitlist.api.value.StreamResponse;
+import java.util.List;
 
 /** Collection of all streams API endpoints. */
 public interface StreamRequest extends Pageable<StreamRequest> {
   /** Returns the most recent 30 messages for the specified user. */
-  Sendable<StreamResponse> user(int userId);
+  Sendable<StreamResponse> user(long userId);
 
   /** Returns the most recent 30 messages for the specified user. */
   Sendable<StreamResponse> user(String username);
 
   /** Returns the most recent 30 messages for the specified symbol. */
-  Sendable<StreamResponse> symbol(int symbolId);
+  Sendable<StreamResponse> symbol(long symbolId);
 
   /** Returns the most recent 30 messages for the specified symbol. */
   Sendable<StreamResponse> symbol(String symbol);
@@ -30,10 +31,10 @@ public interface StreamRequest extends Pageable<StreamRequest> {
   Sendable<StreamResponse> direct();
 
   /** Returns the most recent 30 direct messages sent from the authenticating user. */
-  Sendable<StreamResponse> direct_sent();
+  Sendable<StreamResponse> directSent();
 
   /** Returns the most recent 30 direct messages received by the authenticating user. */
-  Sendable<StreamResponse> direct_received();
+  Sendable<StreamResponse> directReceived();
 
   /**
    * Returns the most recent 30 messages for the specified watch list for the authenticating user.
@@ -89,7 +90,7 @@ public interface StreamRequest extends Pageable<StreamRequest> {
    *
    * <p>Requires partner-level access
    */
-  Sendable<StreamResponse> symbols();
+  Sendable<StreamResponse> symbols(List<String> symbols);
 
   /** Returns the most recent 30 messages with trending symbols in the last 5 minutes. */
   Sendable<StreamResponse> trending();
