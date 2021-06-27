@@ -1,8 +1,11 @@
 package com.stocktwitlist.api.helper;
 
 import java.net.http.HttpResponse.BodySubscriber;
+import java.net.http.HttpResponse.BodySubscribers;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Flow;
 
 /**
@@ -16,6 +19,16 @@ import java.util.concurrent.Flow;
 public class RequestStringBodySubscriber implements Flow.Subscriber<ByteBuffer> {
   private final BodySubscriber<String> bodySubscriber;
 
+  /** Default constructor with built-in standard string body subscriber. */
+  public RequestStringBodySubscriber() {
+    this.bodySubscriber = BodySubscribers.ofString(StandardCharsets.UTF_8);
+  }
+
+  /**
+   * Construct an instance with an injected BodySubscriber
+   *
+   * <p>use when concurrent or other reactive verification is needed.
+   */
   public RequestStringBodySubscriber(BodySubscriber<String> bodySubscriber) {
     this.bodySubscriber = bodySubscriber;
   }
@@ -38,5 +51,10 @@ public class RequestStringBodySubscriber implements Flow.Subscriber<ByteBuffer> 
   @Override
   public void onComplete() {
     bodySubscriber.onComplete();
+  }
+
+  /** Return body string synchronously */
+  public String getBodyString() throws InterruptedException, ExecutionException {
+    return bodySubscriber.getBody().toCompletableFuture().get();
   }
 }

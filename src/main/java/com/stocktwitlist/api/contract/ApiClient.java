@@ -9,4 +9,6 @@ public interface ApiClient {
   StreamRequest streams();
 
   SearchRequest search();
+
+  MessageRequest messages();
 }
