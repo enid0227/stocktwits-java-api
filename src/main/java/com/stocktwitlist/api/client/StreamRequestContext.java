@@ -123,7 +123,7 @@ final class StreamRequestContext implements StreamRequest {
       throw new IllegalArgumentException("exceeded max allowed 10 symbols.");
     }
     return new StreamSendable(
-        context.appendPath("symbols").addData("symbols", String.join(",", symbols)));
+        context.appendPath("symbols").addQueryParam("symbols", String.join(",", symbols)));
   }
 
   @Override

@@ -11,7 +11,6 @@ import static org.mockito.Mockito.when;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
-import com.stocktwitlist.api.helper.RequestStringBodySubscriber;
 import com.stocktwitlist.api.value.Conversation;
 import com.stocktwitlist.api.value.Cursor;
 import com.stocktwitlist.api.value.Likes;
@@ -25,9 +24,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
-import java.net.http.HttpResponse.BodySubscriber;
-import java.net.http.HttpResponse.BodySubscribers;
-import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
@@ -534,7 +530,7 @@ public class StreamRequestTest {
   public void streamSymbolsWithLessOrEqTenSymbolsShouldReturnStreamResponse() throws Exception {
     final ImmutableList<String> symbols = ImmutableList.of("AAPL", "MSFT");
     final String expectedUrl =
-        "https://api.stocktwits.com/api/2/streams/symbols.json?access_token=testToken";
+        "https://api.stocktwits.com/api/2/streams/symbols.json?access_token=testToken&symbols=AAPL%2CMSFT";
 
     stubResponse(SAMPLE_STREAM_RESPONSE);
 
@@ -545,24 +541,8 @@ public class StreamRequestTest {
             .symbols(symbols)
             .send();
 
-    ArgumentCaptor<HttpRequest> requestArgumentCaptor = ArgumentCaptor.forClass(HttpRequest.class);
-    verify(mockHttpClient, times(1)).send(requestArgumentCaptor.capture(), any());
-    final String actualUrl = requestArgumentCaptor.getValue().uri().toString();
-
-    final BodySubscriber bs = BodySubscribers.ofString(StandardCharsets.UTF_8);
-    final RequestStringBodySubscriber requestBodySubscriber = new RequestStringBodySubscriber(bs);
-    requestArgumentCaptor.getValue().bodyPublisher().get().subscribe(requestBodySubscriber);
-
-    assertThat(actualUrl).isEqualTo(expectedUrl);
+    assertThat(getActualUrl()).isEqualTo(expectedUrl);
     assertThat(response).isEqualTo(SAMPLE_STREAM_RESPONSE);
-    assertThat(bs.getBody().toCompletableFuture().get()).isEqualTo("{\"symbols\":\"AAPL,MSFT\"}");
-    // NOTE: to verify in an asynchronous manner
-    //        bs.getBody()
-    //            .thenAccept(
-    //                requestBody -> {
-    //                  assertThat(requestBody).isEqualTo("{\"symbols\":\"AAPL,MSFT\"}");
-    //                });
-
   }
 
   @SuppressWarnings({"unchecked", "rawtypes"}) // client template T is hidden in BodyHandlers
