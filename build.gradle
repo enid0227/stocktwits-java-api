@@ -3,7 +3,7 @@ plugins {
     id 'java-library'
 }
 
-group 'com.stocktwitslist'
+group 'com.stocktwitslist.api'
 version '0.1.0-SNAPSHOT'
 
 java {
