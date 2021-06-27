@@ -153,4 +153,9 @@ final class Context {
     this.httpClient = httpClient;
     return this;
   }
+
+  Context setHttpMethod(String httpMethod) {
+    this.httpMethod = httpMethod;
+    return this;
+  }
 }

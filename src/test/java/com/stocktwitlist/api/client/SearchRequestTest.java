@@ -43,15 +43,15 @@ public class SearchRequestTest {
         SearchResponse.create(
             ImmutableList.of(
                 SearchResult.builder()
-                            .setId(1L)
-                            .setType("user")
-                            .setName("Jony")
-                            .setUsername("jonymoney")
-                            .setIdentity("User")
-                            .setAvatarUrl("url1")
-                            .setAvatarUrlSsl("url2")
-                            .setClassification(ImmutableList.of("suggested"))
-                            .build()));
+                    .setId(1L)
+                    .setType("user")
+                    .setName("Jony")
+                    .setUsername("jonymoney")
+                    .setIdentity("User")
+                    .setAvatarUrl("url1")
+                    .setAvatarUrlSsl("url2")
+                    .setClassification(ImmutableList.of("suggested"))
+                    .build()));
     when(stubHttpResponse.statusCode()).thenReturn(200);
     when(stubHttpResponse.body()).thenReturn(objectMapper.writeValueAsString(expectedResponse));
     when(mockHttpClient.send(any(HttpRequest.class), eq(BodyHandlers.ofString())))
@@ -60,10 +60,10 @@ public class SearchRequestTest {
 
     SearchResponse response =
         StocktwitsApiClient.newRequest("testToken")
-                           .setHttpClient(mockHttpClient)
-                           .search()
-                           .users("jony")
-                           .send();
+            .setHttpClient(mockHttpClient)
+            .search()
+            .users("jony")
+            .send();
 
     verify(mockHttpClient, times(1)).send(requestArgumentCaptor.capture(), any());
     assertThat(requestArgumentCaptor.getValue().uri().toString()).isEqualTo(expectedUrl);
@@ -79,11 +79,11 @@ public class SearchRequestTest {
         SearchResponse.create(
             ImmutableList.of(
                 SearchResult.builder()
-                            .setId(1L)
-                            .setType("symbol")
-                            .setSymbol("JOY")
-                            .setTitle("Joy Global, Inc.")
-                            .build()));
+                    .setId(1L)
+                    .setType("symbol")
+                    .setSymbol("JOY")
+                    .setTitle("Joy Global, Inc.")
+                    .build()));
     when(stubHttpResponse.statusCode()).thenReturn(200);
     when(stubHttpResponse.body()).thenReturn(objectMapper.writeValueAsString(expectedResponse));
     when(mockHttpClient.send(any(HttpRequest.class), eq(BodyHandlers.ofString())))
@@ -92,10 +92,10 @@ public class SearchRequestTest {
 
     SearchResponse response =
         StocktwitsApiClient.newRequest("testToken")
-                           .setHttpClient(mockHttpClient)
-                           .search()
-                           .symbols("joy")
-                           .send();
+            .setHttpClient(mockHttpClient)
+            .search()
+            .symbols("joy")
+            .send();
 
     verify(mockHttpClient, times(1)).send(requestArgumentCaptor.capture(), any());
     assertThat(requestArgumentCaptor.getValue().uri().toString()).isEqualTo(expectedUrl);
@@ -111,21 +111,21 @@ public class SearchRequestTest {
         SearchResponse.create(
             ImmutableList.of(
                 SearchResult.builder()
-                            .setId(1L)
-                            .setType("user")
-                            .setName("Jony")
-                            .setUsername("jonymoney")
-                            .setIdentity("User")
-                            .setAvatarUrl("url1")
-                            .setAvatarUrlSsl("url2")
-                            .setClassification(ImmutableList.of("suggested"))
-                            .build(),
+                    .setId(1L)
+                    .setType("user")
+                    .setName("Jony")
+                    .setUsername("jonymoney")
+                    .setIdentity("User")
+                    .setAvatarUrl("url1")
+                    .setAvatarUrlSsl("url2")
+                    .setClassification(ImmutableList.of("suggested"))
+                    .build(),
                 SearchResult.builder()
-                            .setId(1L)
-                            .setType("symbol")
-                            .setSymbol("JOY")
-                            .setTitle("Joy Global, Inc.")
-                            .build()));
+                    .setId(1L)
+                    .setType("symbol")
+                    .setSymbol("JOY")
+                    .setTitle("Joy Global, Inc.")
+                    .build()));
     when(stubHttpResponse.statusCode()).thenReturn(200);
     when(stubHttpResponse.body()).thenReturn(objectMapper.writeValueAsString(expectedResponse));
     when(mockHttpClient.send(any(HttpRequest.class), eq(BodyHandlers.ofString())))
@@ -134,10 +134,10 @@ public class SearchRequestTest {
 
     SearchResponse response =
         StocktwitsApiClient.newRequest("testToken")
-                           .setHttpClient(mockHttpClient)
-                           .search()
-                           .index("jo")
-                           .send();
+            .setHttpClient(mockHttpClient)
+            .search()
+            .index("jo")
+            .send();
 
     verify(mockHttpClient, times(1)).send(requestArgumentCaptor.capture(), any());
     assertThat(requestArgumentCaptor.getValue().uri().toString()).isEqualTo(expectedUrl);

@@ -31,15 +31,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
 public class StreamRequestTest {
-
-  private static final String SAMPLE_JSON =
-      "{\"cursor\":{\"max\":9999,\"more\":true,\"since\":10},\"messages\":[{\"body\":\"message body"
-          + " here\",\"conversation\":{\"in_reply_to_message_id\":987654320,\"parent\":false,\"parent_message_id\":987654320,\"replies\":3},\"created_at\":\"2021-03-31T20:52:48Z\",\"id\":987654321,\"liked_by_self\":false,\"likes\":{\"total\":3,\"user_ids\":[7654321,66554321,19198181]},\"mentioned_users\":[\"@someuser2\"],\"reshared_by_self\":false,\"source\":{\"id\":1234,\"title\":\"StockTwits"
-          + " for iOS\",\"url\":\"http://www.stocktwits.com/mobile\"},\"symbols\":[{\"has_pricing\":true,\"id\":1634,\"is_following\":false,\"symbol\":\"DRRX\",\"title\":\"Durect"
-          + " Corp.\",\"watchlist_count\":8673}],\"user\":{\"avatar_url\":\"https://avatars.png\",\"avatar_url_ssl\":\"https://avatars.png\",\"followers\":3,\"following\":49,\"id\":123456,\"ideas\":15,\"identity\":\"User\",\"join_date\":\"2020-07-13\",\"like_count\":180,\"name\":\"someuser\",\"official\":false,\"plus_tier\":\"\",\"premium_room\":\"\",\"trade_app\":false,\"username\":\"someuser\",\"watchlist_stocks_count\":138}}],\"user\":{\"avatar_url\":\"https://avatars.png\",\"avatar_url_ssl\":\"https://avatars.png\",\"followers\":3,\"following\":49,\"id\":123456,\"ideas\":15,\"identity\":\"User\",\"join_date\":\"2020-07-13\",\"like_count\":180,\"name\":\"someuser\",\"official\":false,\"plus_tier\":\"\",\"premium_room\":\"\",\"trade_app\":false,\"username\":\"someuser\",\"watchlist_stocks_count\":138},\"watchlist\":{\"created_at\":\"2012-08-10T22:03:24Z\",\"id\":38398,\"name\":\"my"
-          + " picks\",\"symbols\":[{\"id\":7871,\"symbol\":\"FB\",\"title\":\"Facebook\"},{\"id\":2044,\"symbol\":\"GOOG\",\"title\":\"Google"
-          + " Inc.\"}],\"updated_at\":\"2012-08-13T22:26:20Z\"}}";
-
   private static final Watchlist SAMPLE_WATCHLIST =
       Watchlist.builder()
           .setId(38398L)
