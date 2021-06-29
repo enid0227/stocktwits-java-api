@@ -34,7 +34,7 @@ final class Context {
   private final List<String> endpointPath;
   private final Map<String, String> queryParams;
   private final ObjectMapper objectMapper;
-  private Map<String, String> data;
+  private final Map<String, String> data;
   private HttpClient httpClient;
   private Class<? extends Response> responseClass;
   private String httpMethod;
@@ -101,7 +101,8 @@ final class Context {
     urlBuilder.append("?");
     urlBuilder.append(
         queryParams.keySet().stream()
-            // make sure param order is always the same for the same combination of params.
+            // make sure param order is always the same for the same combination of
+            // params.
             // this makes debug and test easier.
             .sorted()
             .map(key -> key + "=" + URLEncoder.encode(queryParams.get(key), StandardCharsets.UTF_8))
