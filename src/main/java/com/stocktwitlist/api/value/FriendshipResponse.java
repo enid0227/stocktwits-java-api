@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.google.auto.value.AutoValue;
+import com.stocktwitlist.api.contract.Response;
 
 @AutoValue
 @JsonSerialize(as = FriendshipResponse.class)
-public abstract class FriendshipResponse {
+public abstract class FriendshipResponse implements Response {
   @JsonCreator
   public static FriendshipResponse create(@JsonProperty("user") User user) {
     return new AutoValue_FriendshipResponse(user);
