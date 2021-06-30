@@ -11,4 +11,6 @@ public interface ApiClient {
   SearchRequest search();
 
   MessageRequest messages();
+
+  GraphRequest graph();
 }

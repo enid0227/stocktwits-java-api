@@ -1,6 +1,7 @@
 package com.stocktwitlist.api.client;
 
 import com.stocktwitlist.api.contract.ApiClient;
+import com.stocktwitlist.api.contract.GraphRequest;
 import com.stocktwitlist.api.contract.MessageRequest;
 import com.stocktwitlist.api.contract.SearchRequest;
 import com.stocktwitlist.api.contract.StreamRequest;
@@ -43,5 +44,10 @@ public final class StocktwitsApiClient implements ApiClient {
   @Override
   public MessageRequest messages() {
     return new MessageRequestContext(context);
+  }
+
+  @Override
+  public GraphRequest graph() {
+    return new GraphRequestContext(context);
   }
 }
