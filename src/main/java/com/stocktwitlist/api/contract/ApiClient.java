@@ -13,4 +13,6 @@ public interface ApiClient {
   MessageRequest messages();
 
   GraphRequest graph();
+
+  FriendshipRequest friendships();
 }
