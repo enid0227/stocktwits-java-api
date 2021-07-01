@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.guava.GuavaModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.common.flogger.FluentLogger;
+import com.stocktwitlist.api.contract.Sendable;
 import com.stocktwitlist.api.value.Response;
 import java.io.IOException;
 import java.net.URI;
@@ -158,5 +159,25 @@ final class Context {
   Context setHttpMethod(String httpMethod) {
     this.httpMethod = httpMethod;
     return this;
+  }
+
+  static class GenericSendable<T extends Response> implements Sendable<T> {
+    private final Context context;
+
+    GenericSendable(Context context) {
+      this.context = context;
+    }
+
+    @Override
+    @Nullable
+    @SuppressWarnings("unchecked") // T always castable bounded by T extends Response
+    public T send() {
+      String json = context.sendRequest();
+      if (json == null) {
+        return null;
+      }
+
+      return (T) context.parseJsonString(json);
+    }
   }
 }
