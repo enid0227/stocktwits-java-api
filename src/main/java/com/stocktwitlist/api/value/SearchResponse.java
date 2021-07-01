@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableList;
-import com.stocktwitlist.api.contract.Response;
 
 /** AutoValue of User Search JSON response. */
 @AutoValue

@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.guava.GuavaModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.common.flogger.FluentLogger;
-import com.stocktwitlist.api.contract.Response;
+import com.stocktwitlist.api.value.Response;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URLEncoder;
@@ -122,14 +122,14 @@ final class Context {
               .method(httpMethod, BodyPublishers.ofString(objectMapper.writeValueAsString(data)))
               .build();
       HttpResponse<String> response = getHttpClient().send(request, BodyHandlers.ofString());
-      logger.atInfo().log("status_code: %s", response.statusCode());
+
       if (response.statusCode() != 200) {
-        logger.atInfo().log("non 200 response. body: %s", response.body());
+        logger.atSevere().log("status_code: %d. body: %s", response.statusCode(), response.body());
         return null;
       }
       return response.body();
     } catch (IOException | InterruptedException e) {
-      logger.atWarning().withCause(e).log("cannot get watchlist from stocktwits");
+      logger.atSevere().withCause(e).log("cannot get watchlist from stocktwits");
       return null;
     }
   }
