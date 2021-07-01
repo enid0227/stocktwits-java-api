@@ -122,9 +122,9 @@ final class Context {
               .method(httpMethod, BodyPublishers.ofString(objectMapper.writeValueAsString(data)))
               .build();
       HttpResponse<String> response = getHttpClient().send(request, BodyHandlers.ofString());
-      logger.atInfo().log("status_code: %s", response.statusCode());
+
       if (response.statusCode() != 200) {
-        logger.atInfo().log("non 200 response. body: %s", response.body());
+        logger.atInfo().log("status_code: %s. body: %s", response.statusCode(), response.body());
         return null;
       }
       return response.body();

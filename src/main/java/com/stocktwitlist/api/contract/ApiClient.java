@@ -15,4 +15,6 @@ public interface ApiClient {
   GraphRequest graph();
 
   FriendshipRequest friendships();
+
+  WatchlistRequest watchlists();
 }

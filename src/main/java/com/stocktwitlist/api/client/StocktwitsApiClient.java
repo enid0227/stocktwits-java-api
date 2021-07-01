@@ -6,6 +6,7 @@ import com.stocktwitlist.api.contract.GraphRequest;
 import com.stocktwitlist.api.contract.MessageRequest;
 import com.stocktwitlist.api.contract.SearchRequest;
 import com.stocktwitlist.api.contract.StreamRequest;
+import com.stocktwitlist.api.contract.WatchlistRequest;
 import java.net.http.HttpClient;
 
 /** Basic implementation for stocktwits.com API */
@@ -55,5 +56,10 @@ public final class StocktwitsApiClient implements ApiClient {
   @Override
   public FriendshipRequest friendships() {
     return new FriendshipRequestContext(context);
+  }
+
+  @Override
+  public WatchlistRequest watchlists() {
+    return new WatchlistRequestContext(context);
   }
 }
