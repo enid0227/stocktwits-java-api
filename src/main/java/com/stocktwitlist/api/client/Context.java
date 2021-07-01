@@ -124,12 +124,12 @@ final class Context {
       HttpResponse<String> response = getHttpClient().send(request, BodyHandlers.ofString());
 
       if (response.statusCode() != 200) {
-        logger.atInfo().log("status_code: %d. body: %s", response.statusCode(), response.body());
+        logger.atSevere().log("status_code: %d. body: %s", response.statusCode(), response.body());
         return null;
       }
       return response.body();
     } catch (IOException | InterruptedException e) {
-      logger.atWarning().withCause(e).log("cannot get watchlist from stocktwits");
+      logger.atSevere().withCause(e).log("cannot get watchlist from stocktwits");
       return null;
     }
   }
