@@ -17,4 +17,6 @@ public interface ApiClient {
   FriendshipRequest friendships();
 
   WatchlistRequest watchlists();
+
+  BlockRequest blocks();
 }
