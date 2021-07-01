@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.guava.GuavaModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.common.flogger.FluentLogger;
-import com.stocktwitlist.api.contract.Response;
+import com.stocktwitlist.api.value.Response;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URLEncoder;

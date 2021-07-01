@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableList;
-import com.stocktwitlist.api.contract.Response;
 
 @AutoValue
 @JsonDeserialize(builder = AutoValue_GraphResponse.Builder.class)
