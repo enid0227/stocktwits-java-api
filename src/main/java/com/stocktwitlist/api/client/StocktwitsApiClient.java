@@ -1,6 +1,7 @@
 package com.stocktwitlist.api.client;
 
 import com.stocktwitlist.api.contract.ApiClient;
+import com.stocktwitlist.api.contract.BlockRequest;
 import com.stocktwitlist.api.contract.FriendshipRequest;
 import com.stocktwitlist.api.contract.GraphRequest;
 import com.stocktwitlist.api.contract.MessageRequest;
@@ -61,5 +62,10 @@ public final class StocktwitsApiClient implements ApiClient {
   @Override
   public WatchlistRequest watchlists() {
     return new WatchlistRequestContext(context);
+  }
+
+  @Override
+  public BlockRequest blocks() {
+    return new BlockRequestContext(context);
   }
 }

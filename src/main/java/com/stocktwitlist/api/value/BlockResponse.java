@@ -7,7 +7,7 @@ import com.google.auto.value.AutoValue;
 
 @AutoValue
 @JsonSerialize(as = BlockResponse.class)
-public abstract class BlockResponse {
+public abstract class BlockResponse implements Response {
   @JsonCreator
   public static BlockResponse create(@JsonProperty("user") User user) {
     return new AutoValue_BlockResponse(user);
