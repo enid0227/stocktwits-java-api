@@ -19,4 +19,6 @@ public interface ApiClient {
   WatchlistRequest watchlists();
 
   BlockRequest blocks();
+
+  AccountRequest account();
 }
