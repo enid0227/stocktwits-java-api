@@ -1,10 +1,10 @@
 package com.stocktwitlist.api.client;
 
+import com.stocktwitlist.api.client.Context.GenericSendable;
 import com.stocktwitlist.api.contract.MessageRequest;
 import com.stocktwitlist.api.contract.Sendable;
 import com.stocktwitlist.api.value.CreateMessageRequest;
 import com.stocktwitlist.api.value.MessageResponse;
-import javax.annotation.Nullable;
 
 public class MessageRequestContext implements MessageRequest {
 
@@ -23,7 +23,7 @@ public class MessageRequestContext implements MessageRequest {
     if (request.fileUrl() != null) {
       context.addData("chart", request.fileUrl());
     }
-    return new MessageSendable(
+    return new GenericSendable<>(
         context
             .appendPath("create")
             .setHttpMethod("POST")
@@ -33,38 +33,18 @@ public class MessageRequestContext implements MessageRequest {
 
   @Override
   public Sendable<MessageResponse> show(long messageId) {
-    return new MessageSendable(context.appendPath("show").appendPath("" + messageId));
+    return new GenericSendable<>(context.appendPath("show").appendPath("" + messageId));
   }
 
   @Override
   public Sendable<MessageResponse> like(long messageId) {
-    return new MessageSendable(
+    return new GenericSendable<>(
         context.appendPath("like").setHttpMethod("POST").addData("id", "" + messageId));
   }
 
   @Override
   public Sendable<MessageResponse> unlike(long messageId) {
-    return new MessageSendable(
+    return new GenericSendable<>(
         context.appendPath("unlike").setHttpMethod("POST").addData("id", "" + messageId));
-  }
-
-  static final class MessageSendable implements Sendable<MessageResponse> {
-
-    private final Context context;
-
-    MessageSendable(Context context) {
-      this.context = context;
-    }
-
-    @Override
-    @Nullable
-    public MessageResponse send() {
-      String response = context.sendRequest();
-      if (response == null) {
-        return null;
-      }
-
-      return (MessageResponse) context.parseJsonString(response);
-    }
   }
 }
