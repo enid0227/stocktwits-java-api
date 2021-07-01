@@ -1,5 +1,7 @@
 # Stocktwits Client Library for Java
 
+![example workflow](https://github.com/enid0227/stocktwits-java-api/actions/workflows/gradle-java-ci.yml/badge.svg)
+
 ## Description
 
 The `stocktwits-java-api` is a [stocktwits api](https://api.stocktwits.com/developers/docs) client
