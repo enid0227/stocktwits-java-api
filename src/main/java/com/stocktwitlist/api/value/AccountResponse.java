@@ -7,7 +7,7 @@ import com.google.auto.value.AutoValue;
 
 @AutoValue
 @JsonSerialize(as = AccountResponse.class)
-public abstract class AccountResponse {
+public abstract class AccountResponse implements Response {
   @JsonCreator
   public static AccountResponse create(@JsonProperty("user") User user) {
     return new AutoValue_AccountResponse(user);
