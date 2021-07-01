@@ -124,7 +124,7 @@ final class Context {
       HttpResponse<String> response = getHttpClient().send(request, BodyHandlers.ofString());
 
       if (response.statusCode() != 200) {
-        logger.atInfo().log("status_code: %s. body: %s", response.statusCode(), response.body());
+        logger.atInfo().log("status_code: %d. body: %s", response.statusCode(), response.body());
         return null;
       }
       return response.body();
