@@ -36,7 +36,7 @@ public class StocktwitsApiException extends Exception {
     return response;
   }
 
-  public StocktwitsApiException setResposne(String response) {
+  public StocktwitsApiException setResponse(String response) {
     this.response = response;
     return this;
   }

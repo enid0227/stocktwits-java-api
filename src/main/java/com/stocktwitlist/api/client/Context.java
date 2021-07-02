@@ -126,7 +126,7 @@ final class Context {
       if (response.statusCode() != 200) {
         throw new StocktwitsApiException("bad request to stocktwits.com")
             .setStatusCode(response.statusCode())
-            .setResposne(response.body());
+            .setResponse(response.body());
       }
       return response.body();
     } catch (IOException | InterruptedException e) {
