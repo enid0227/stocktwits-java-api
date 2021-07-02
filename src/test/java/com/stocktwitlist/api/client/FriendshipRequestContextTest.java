@@ -53,7 +53,8 @@ public class FriendshipRequestContextTest {
     setStubHttpResponse(SAMPLE_RESPONSE);
 
     FriendshipResponse resposne =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .friendships()
             .create(5L)
@@ -74,7 +75,8 @@ public class FriendshipRequestContextTest {
     setStubHttpResponse(expectedResponse);
 
     FriendshipResponse resposne =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .friendships()
             .destroy(6L)

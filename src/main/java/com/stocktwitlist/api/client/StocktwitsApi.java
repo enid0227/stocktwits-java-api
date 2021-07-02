@@ -1,7 +1,7 @@
 package com.stocktwitlist.api.client;
 
 import com.stocktwitlist.api.contract.AccountRequest;
-import com.stocktwitlist.api.contract.ApiClient;
+import com.stocktwitlist.api.contract.Api;
 import com.stocktwitlist.api.contract.BlockRequest;
 import com.stocktwitlist.api.contract.FriendshipRequest;
 import com.stocktwitlist.api.contract.GraphRequest;
@@ -12,25 +12,15 @@ import com.stocktwitlist.api.contract.WatchlistRequest;
 import java.net.http.HttpClient;
 
 /** Basic implementation for stocktwits.com API */
-public final class StocktwitsApiClient implements ApiClient {
+public final class StocktwitsApi implements Api {
   private final Context context;
 
-  private StocktwitsApiClient(String accessToken) {
+  StocktwitsApi(String accessToken) {
     this.context = new Context(accessToken);
   }
 
-  /**
-   * Returns a new api client.
-   *
-   * @param accessToken for the authenticated user
-   * @return a client with endpoint api methods
-   */
-  public static ApiClient newRequest(String accessToken) {
-    return new StocktwitsApiClient(accessToken);
-  }
-
   @Override
-  public ApiClient setHttpClient(HttpClient httpClient) {
+  public Api setHttpClient(HttpClient httpClient) {
     context.setHttpClient(httpClient);
     return this;
   }

@@ -68,7 +68,8 @@ public class GraphRequestTest {
     setStubHttpResponse(SAMPLE_GRAPH_RESPONSE);
 
     GraphResponse resposne =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .graph()
             .blocking()
@@ -85,7 +86,8 @@ public class GraphRequestTest {
     setStubHttpResponse(SAMPLE_GRAPH_RESPONSE);
 
     GraphResponse resposne =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .graph()
             .muting()
@@ -102,7 +104,8 @@ public class GraphRequestTest {
     setStubHttpResponse(SAMPLE_GRAPH_RESPONSE);
 
     GraphResponse resposne =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .graph()
             .following()
@@ -119,7 +122,8 @@ public class GraphRequestTest {
     setStubHttpResponse(SAMPLE_GRAPH_RESPONSE);
 
     GraphResponse resposne =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .graph()
             .followers()
@@ -136,7 +140,8 @@ public class GraphRequestTest {
     setStubHttpResponse(SAMPLE_GRAPH_RESPONSE);
 
     GraphResponse resposne =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .graph()
             .symbols()
