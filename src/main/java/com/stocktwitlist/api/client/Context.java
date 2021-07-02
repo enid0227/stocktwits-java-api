@@ -12,6 +12,7 @@ import com.fasterxml.jackson.datatype.guava.GuavaModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.common.flogger.FluentLogger;
 import com.stocktwitlist.api.contract.Sendable;
+import com.stocktwitlist.api.exception.StocktwitsApiException;
 import com.stocktwitlist.api.value.Response;
 import java.io.IOException;
 import java.net.URI;
@@ -27,7 +28,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.annotation.Nullable;
 
 final class Context {
   private static final FluentLogger logger = FluentLogger.forEnclosingClass();
@@ -111,8 +111,7 @@ final class Context {
     return urlBuilder.toString();
   }
 
-  @Nullable
-  String sendRequest() {
+  String sendRequest() throws StocktwitsApiException {
     String url = getUrl();
     logger.atInfo().log(url);
 
@@ -125,23 +124,21 @@ final class Context {
       HttpResponse<String> response = getHttpClient().send(request, BodyHandlers.ofString());
 
       if (response.statusCode() != 200) {
-        logger.atSevere().log("status_code: %d. body: %s", response.statusCode(), response.body());
-        return null;
+        throw new StocktwitsApiException("bad request to stocktwits.com")
+            .setStatusCode(response.statusCode())
+            .setResposne(response.body());
       }
       return response.body();
     } catch (IOException | InterruptedException e) {
-      logger.atSevere().withCause(e).log("cannot get watchlist from stocktwits");
-      return null;
+      throw new StocktwitsApiException(e);
     }
   }
 
-  Response parseJsonString(String json) {
+  Response parseJsonString(String json) throws StocktwitsApiException {
     try {
       return objectMapper.readValue(json, responseClass);
     } catch (JsonProcessingException e) {
-      logger.atSevere().withCause(e).log("error parsing stock JSON response");
-      logger.atSevere().log("raw JSON response:\n%s", json);
-      return null;
+      throw new StocktwitsApiException("error parsing JSON response", e);
     }
   }
 
@@ -169,15 +166,9 @@ final class Context {
     }
 
     @Override
-    @Nullable
     @SuppressWarnings("unchecked") // T always castable bounded by T extends Response
-    public T send() {
-      String json = context.sendRequest();
-      if (json == null) {
-        return null;
-      }
-
-      return (T) context.parseJsonString(json);
+    public T send() throws StocktwitsApiException {
+      return (T) context.parseJsonString(context.sendRequest());
     }
   }
 }
