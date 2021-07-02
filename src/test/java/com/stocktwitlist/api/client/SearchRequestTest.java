@@ -59,7 +59,8 @@ public class SearchRequestTest {
     ArgumentCaptor<HttpRequest> requestArgumentCaptor = ArgumentCaptor.forClass(HttpRequest.class);
 
     SearchResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .search()
             .users("jony")
@@ -91,7 +92,8 @@ public class SearchRequestTest {
     ArgumentCaptor<HttpRequest> requestArgumentCaptor = ArgumentCaptor.forClass(HttpRequest.class);
 
     SearchResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .search()
             .symbols("joy")
@@ -133,7 +135,8 @@ public class SearchRequestTest {
     ArgumentCaptor<HttpRequest> requestArgumentCaptor = ArgumentCaptor.forClass(HttpRequest.class);
 
     SearchResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .search()
             .index("jo")

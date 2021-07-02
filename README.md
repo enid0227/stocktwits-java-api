@@ -12,20 +12,25 @@ inspired by [fluent interface](https://en.wikipedia.org/wiki/Fluent_interface).
 ```java
 // Example Call https://api.stocktwits.com/api/2/streams/user/:id.json
 StreamResponse resp =
-    StocktwitsApiClient.newRequest("testToken")
-    .streams()
-    .setSince(1L)
-    .setMax(1000000L)
-    .setLimit(25)
-    .user("testusername")
-    .send();
+    new StocktwitsClient()
+      .newRequest("testToken")
+      .streams()
+      .setSince(1L)
+      .setMax(1000000L)
+      .setLimit(25)
+      .user("testusername")
+      .send();
 
-// Example Call
+// Example Call with  StocktwitsClient as a dependency
+
+// inject via constructor or setter or with default constructor
+private StocktwitsClient stocktwitsClient;
+
 SearchResponse resp =
-    StocktwitsApiClient.newRequest("testToken")
-    .search()
-    .users("findingnemo")
-    .send();
+    stocktwitsClient.newRequest("testToken")
+      .search()
+      .users("findingnemo")
+      .send();
 ```
 
 ## Project Dependencies

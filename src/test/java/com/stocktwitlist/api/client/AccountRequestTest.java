@@ -52,7 +52,8 @@ public class AccountRequestTest {
     stubResponse(expectedResponse);
 
     AccountResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .account()
             .verify()
@@ -71,7 +72,8 @@ public class AccountRequestTest {
     stubResponse(expectedResponse);
 
     AccountResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .account()
             .update(

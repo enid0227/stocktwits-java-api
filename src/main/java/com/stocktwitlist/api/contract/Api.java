@@ -3,8 +3,8 @@ package com.stocktwitlist.api.contract;
 import java.net.http.HttpClient;
 
 /** Stocktwits API Client interface. */
-public interface ApiClient {
-  ApiClient setHttpClient(HttpClient httpClient);
+public interface Api {
+  Api setHttpClient(HttpClient httpClient);
 
   StreamRequest streams();
 

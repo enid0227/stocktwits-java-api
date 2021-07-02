@@ -113,7 +113,8 @@ public class MessageRequestTest {
     stubResponse(SAMPLE_MESSAGE_RESPONSE);
 
     MessageResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .messages()
             .show(messageId)
@@ -131,7 +132,8 @@ public class MessageRequestTest {
     stubResponse(SAMPLE_MESSAGE_RESPONSE);
 
     MessageResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .messages()
             .like(messageId)
@@ -156,7 +158,8 @@ public class MessageRequestTest {
     stubResponse(SAMPLE_MESSAGE_RESPONSE);
 
     MessageResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .messages()
             .unlike(messageId)
@@ -187,7 +190,8 @@ public class MessageRequestTest {
     stubResponse(SAMPLE_MESSAGE_RESPONSE);
 
     MessageResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .messages()
             .create(request)

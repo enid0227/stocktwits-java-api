@@ -72,7 +72,8 @@ public class WatchlistRequestTest {
     stubResponse(expectedResponse);
 
     WatchlistResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .watchlists()
             .index()
@@ -92,7 +93,8 @@ public class WatchlistRequestTest {
     stubResponse(expectedResponse);
 
     WatchlistResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .watchlists()
             .create(WATCHLIST_TECH.name())
@@ -116,7 +118,8 @@ public class WatchlistRequestTest {
     stubResponse(expectedResponse);
 
     WatchlistResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .watchlists()
             .update(WATCHLIST_FINANCE.id(), WATCHLIST_FINANCE.name())
@@ -140,7 +143,8 @@ public class WatchlistRequestTest {
     stubResponse(expectedResponse);
 
     WatchlistResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .watchlists()
             .destroy(WATCHLIST_FINANCE.id())
@@ -161,7 +165,8 @@ public class WatchlistRequestTest {
     stubResponse(expectedResponse);
 
     WatchlistResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .watchlists()
             .show(WATCHLIST_TECH.id())
@@ -182,7 +187,8 @@ public class WatchlistRequestTest {
     stubResponse(expectedResponse);
 
     WatchlistResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .watchlists()
             .symbolsCreate(
@@ -207,7 +213,8 @@ public class WatchlistRequestTest {
     stubResponse(expectedResponse);
 
     WatchlistResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .watchlists()
             .symbolsDestroy(

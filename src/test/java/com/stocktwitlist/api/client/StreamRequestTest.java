@@ -135,7 +135,8 @@ public class StreamRequestTest {
     stubResponse(expectedResponse);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .user(userId)
@@ -160,7 +161,8 @@ public class StreamRequestTest {
     stubResponse(expectedResponse);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .user(username)
@@ -186,7 +188,8 @@ public class StreamRequestTest {
     stubResponse(expectedResponse);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .symbol(symbolId)
@@ -212,7 +215,8 @@ public class StreamRequestTest {
     stubResponse(expectedResponse);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .symbol(symbolName)
@@ -230,7 +234,8 @@ public class StreamRequestTest {
     stubResponse(SAMPLE_STREAM_RESPONSE);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .friends()
@@ -248,7 +253,8 @@ public class StreamRequestTest {
     stubResponse(SAMPLE_STREAM_RESPONSE);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .mentions()
@@ -266,7 +272,8 @@ public class StreamRequestTest {
     stubResponse(SAMPLE_STREAM_RESPONSE);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .direct()
@@ -284,7 +291,8 @@ public class StreamRequestTest {
     stubResponse(SAMPLE_STREAM_RESPONSE);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .directSent()
@@ -302,7 +310,8 @@ public class StreamRequestTest {
     stubResponse(SAMPLE_STREAM_RESPONSE);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .directReceived()
@@ -320,7 +329,8 @@ public class StreamRequestTest {
     stubResponse(SAMPLE_STREAM_RESPONSE);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .watchlist()
@@ -338,7 +348,8 @@ public class StreamRequestTest {
     stubResponse(SAMPLE_STREAM_RESPONSE);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .all()
@@ -356,7 +367,8 @@ public class StreamRequestTest {
     stubResponse(SAMPLE_STREAM_RESPONSE);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .charts()
@@ -374,7 +386,8 @@ public class StreamRequestTest {
     stubResponse(SAMPLE_STREAM_RESPONSE);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .equities()
@@ -392,7 +405,8 @@ public class StreamRequestTest {
     stubResponse(SAMPLE_STREAM_RESPONSE);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .forex()
@@ -410,7 +424,8 @@ public class StreamRequestTest {
     stubResponse(SAMPLE_STREAM_RESPONSE);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .futures()
@@ -428,7 +443,8 @@ public class StreamRequestTest {
     stubResponse(SAMPLE_STREAM_RESPONSE);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .private_companies()
@@ -446,7 +462,8 @@ public class StreamRequestTest {
     stubResponse(SAMPLE_STREAM_RESPONSE);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .suggested()
@@ -464,7 +481,8 @@ public class StreamRequestTest {
     stubResponse(SAMPLE_STREAM_RESPONSE);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .trending()
@@ -485,7 +503,8 @@ public class StreamRequestTest {
     stubResponse(SAMPLE_STREAM_RESPONSE);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .sectors(sector)
@@ -506,7 +525,8 @@ public class StreamRequestTest {
     stubResponse(SAMPLE_STREAM_RESPONSE);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .conversation(conversationId)
@@ -526,7 +546,8 @@ public class StreamRequestTest {
     stubResponse(SAMPLE_STREAM_RESPONSE);
 
     StreamResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .streams()
             .symbols(symbols)

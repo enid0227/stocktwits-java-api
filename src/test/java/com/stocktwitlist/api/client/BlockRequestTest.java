@@ -51,7 +51,8 @@ public class BlockRequestTest {
     stubResponse(BLOCK_JIMMY_RESPONSE);
 
     BlockResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .blocks()
             .create(USER_JIMMY.id())
@@ -70,7 +71,8 @@ public class BlockRequestTest {
     stubResponse(BLOCK_JIMMY_RESPONSE);
 
     BlockResponse response =
-        StocktwitsApiClient.newRequest("testToken")
+        new StocktwitsClient()
+            .newRequest("testToken")
             .setHttpClient(mockHttpClient)
             .blocks()
             .destroy(USER_JIMMY.id())
