@@ -1,11 +1,17 @@
 # Stocktwits Client Library for Java
 
-![example workflow](https://github.com/enid0227/stocktwits-java-api/actions/workflows/gradle-java-ci.yml/badge.svg)
+![ci workflow](https://github.com/enid0227/stocktwits-java-api/actions/workflows/gradle-java-ci.yml/badge.svg)
 
 ## Description
 
 The `stocktwits-java-api` is a [stocktwits api](https://api.stocktwits.com/developers/docs) client
-inspired by [fluent interface](https://en.wikipedia.org/wiki/Fluent_interface).
+inspired by [fluent interface](https://en.wikipedia.org/wiki/Fluent_interface). This client does
+not handle OAuth authorization/authentication with stocktwits.
+
+To use this client in your java project, simply provide the access token that's obtained from other
+OAuth library (such as [Spring Security](https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2))
+to a [StocktwitsClient](https://github.com/enid0227/stocktwits-java-api/blob/main/src/main/java/com/stocktwitlist/api/client/StocktwitsClient.java)
+instance (either singleton or new instance is fine).
 
 **Example Usage**
 
@@ -13,25 +19,38 @@ inspired by [fluent interface](https://en.wikipedia.org/wiki/Fluent_interface).
 // Example Call https://api.stocktwits.com/api/2/streams/user/:id.json
 StreamResponse resp =
     new StocktwitsClient()
-      .newRequest("testToken")
-      .streams()
-      .setSince(1L)
-      .setMax(1000000L)
-      .setLimit(25)
-      .user("testusername")
-      .send();
-
-// Example Call with  StocktwitsClient as a dependency
-
-// inject via constructor or setter or with default constructor
-private StocktwitsClient stocktwitsClient;
-
-SearchResponse resp =
-    stocktwitsClient.newRequest("testToken")
-      .search()
-      .users("findingnemo")
-      .send();
+        .newRequest("testToken")
+        .streams()
+        .setSince(1L)
+        .setMax(1000000L)
+        .setLimit(25)
+        .user("testusername")
+        .send();
 ```
+
+**Example Usage with a StocktwitsClient as a dependency**
+
+```java
+class MyService {
+
+  private final StocktwitsClient stocktwitsClient;
+  
+  // inject StocktwitsClient via constructor
+  MyService(StocktwitsClient stocktwitsClient) { this.stocktwitsClient = stocktwitsClient; }
+
+  void printSearchResponse() {
+    SearchResponse resp =
+        stocktwitsClient.newRequest("testToken")
+            .search()
+            .users("findingnemo")
+            .send();
+    System.out.println(resp);
+  }
+}
+```
+
+To see more example usage, please see [test cases](https://github.com/enid0227/stocktwits-java-api/tree/main/src/test/java/com/stocktwitlist/api/client)
+
 
 ## Project Dependencies
 
@@ -50,6 +69,10 @@ jackson library handle the serialize/deserialize between JSON String and AutoVal
 ### Truth + JUnit5
 
 [Truth](https://truth.dev/) provides easy-to-read assertion API for java JUnit5 tests.
+
+### Mockito
+
+[Mockito](https://site.mockito.org/) is used to stub/mock `HttpClient` in the tests
 
 ### google-java-format
 
