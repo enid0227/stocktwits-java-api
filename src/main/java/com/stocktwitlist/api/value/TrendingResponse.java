@@ -8,7 +8,7 @@ import com.google.common.collect.ImmutableList;
 
 @AutoValue
 @JsonSerialize(as = TrendingResponse.class)
-public abstract class TrendingResponse {
+public abstract class TrendingResponse implements Response {
   @JsonCreator
   public static TrendingResponse create(@JsonProperty("symbols") ImmutableList<Symbol> symbols) {
     return new AutoValue_TrendingResponse(symbols);
