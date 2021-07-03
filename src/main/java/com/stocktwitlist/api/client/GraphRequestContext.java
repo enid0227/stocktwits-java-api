@@ -9,8 +9,7 @@ public class GraphRequestContext implements GraphRequest {
   private final Context context;
 
   GraphRequestContext(Context context) {
-    this.context = context;
-    context.appendPath("graph").setResponseClass(GraphResponse.class);
+    this.context = context.appendPath("graph").setResponseClass(GraphResponse.class);
   }
 
   @Override

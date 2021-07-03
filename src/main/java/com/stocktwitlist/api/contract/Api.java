@@ -21,4 +21,6 @@ public interface Api {
   BlockRequest blocks();
 
   AccountRequest account();
+
+  TrendingRequest trending();
 }

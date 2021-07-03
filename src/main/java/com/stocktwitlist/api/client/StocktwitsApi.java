@@ -8,6 +8,7 @@ import com.stocktwitlist.api.contract.GraphRequest;
 import com.stocktwitlist.api.contract.MessageRequest;
 import com.stocktwitlist.api.contract.SearchRequest;
 import com.stocktwitlist.api.contract.StreamRequest;
+import com.stocktwitlist.api.contract.TrendingRequest;
 import com.stocktwitlist.api.contract.WatchlistRequest;
 import java.net.http.HttpClient;
 
@@ -63,5 +64,10 @@ public final class StocktwitsApi implements Api {
   @Override
   public AccountRequest account() {
     return new AccountRequestContext(context);
+  }
+
+  @Override
+  public TrendingRequest trending() {
+    return new TrendingRequestContext(context);
   }
 }
