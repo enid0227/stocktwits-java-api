@@ -6,6 +6,7 @@ import com.stocktwitlist.api.contract.BlockRequest;
 import com.stocktwitlist.api.contract.FriendshipRequest;
 import com.stocktwitlist.api.contract.GraphRequest;
 import com.stocktwitlist.api.contract.MessageRequest;
+import com.stocktwitlist.api.contract.MuteRequest;
 import com.stocktwitlist.api.contract.SearchRequest;
 import com.stocktwitlist.api.contract.StreamRequest;
 import com.stocktwitlist.api.contract.TrendingRequest;
@@ -69,5 +70,10 @@ public final class StocktwitsApi implements Api {
   @Override
   public TrendingRequest trending() {
     return new TrendingRequestContext(context);
+  }
+
+  @Override
+  public MuteRequest mutes() {
+    return new MuteRequestContext(context);
   }
 }
