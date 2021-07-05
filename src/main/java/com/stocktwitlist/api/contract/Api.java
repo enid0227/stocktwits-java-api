@@ -23,4 +23,6 @@ public interface Api {
   AccountRequest account();
 
   TrendingRequest trending();
+
+  MuteRequest mutes();
 }
