@@ -25,4 +25,6 @@ public interface Api {
   TrendingRequest trending();
 
   MuteRequest mutes();
+
+  DeletionRequest deletions();
 }

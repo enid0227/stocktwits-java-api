@@ -3,6 +3,7 @@ package com.stocktwitlist.api.client;
 import com.stocktwitlist.api.contract.AccountRequest;
 import com.stocktwitlist.api.contract.Api;
 import com.stocktwitlist.api.contract.BlockRequest;
+import com.stocktwitlist.api.contract.DeletionRequest;
 import com.stocktwitlist.api.contract.FriendshipRequest;
 import com.stocktwitlist.api.contract.GraphRequest;
 import com.stocktwitlist.api.contract.MessageRequest;
@@ -75,5 +76,10 @@ public final class StocktwitsApi implements Api {
   @Override
   public MuteRequest mutes() {
     return new MuteRequestContext(context);
+  }
+
+  @Override
+  public DeletionRequest deletions() {
+    return new DeletionRequestContext(context);
   }
 }
