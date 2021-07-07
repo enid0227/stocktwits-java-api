@@ -13,7 +13,50 @@ OAuth library (such as [Spring Security](https://docs.spring.io/spring-security/
 to a [StocktwitsClient](https://github.com/enid0227/stocktwits-java-api/blob/main/src/main/java/com/stocktwitlist/api/client/StocktwitsClient.java)
 instance (either singleton or new instance is fine).
 
-**Example Usage**
+## How to Use this Client Project
+
+### With Maven
+
+Add the `jitpack` repository and `stocktwits-java-api` in the `pom.xml`
+
+```xml
+...
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+...
+<dependency>
+    <groupId>com.github.enid0227</groupId>
+    <artifactId>stocktwits-java-api</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+### With Gradle
+
+Add the `jitpack` repository and `stocktwits-java-api` in the `build.gradle`
+
+```gradle
+...
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+...
+dependencies {
+        implementation 'com.github.enid0227:stocktwits-java-api:1.0.0'
+}
+```
+### With `sbt` or `leiningen`
+
+Please see https://jitpack.io/#enid0227/stocktwits-java-api/v1.0.0
+
+## Example Usage
 
 ```java
 // Example Call https://api.stocktwits.com/api/2/streams/user/:id.json
