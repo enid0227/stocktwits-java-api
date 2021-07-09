@@ -15,6 +15,8 @@ instance (either singleton or new instance is fine).
 
 ## How to Use this Client Project
 
+### Example Spring Boot Project: [spring-boot-stocktwits-starter](https://github.com/enid0227/spring-boot-stocktwits-starter)
+
 ### With Maven
 
 Add the `jitpack` repository and `stocktwits-java-api` in the `pom.xml`
